@@ -163,13 +163,16 @@ class Tile:
           self.mv_blank(right_t,self.RT)
           print('-slide LF')
           self.slide(self.LF)
-        elif (blank_coords[1]<t_coords[1] or            # blank left of tile
-          blank_coords[1]==t_coords[1] and blank_coords[0]<t_coords[0]): # blank above
+        elif (blank_coords[1] <= t_coords[1]):            # blank left of tile
           print('case B  abv_t',abv_t)
+          if blank_coords[0]>t_coords[0] and blank_coords[1]==t_coords[1] and blank_coords[1]<self.c-1:
+            # blank is under tile and blank is same column as tile
+            print('-side RT')
+            self.slide(self.RT)
           self.mv_blank(abv_t,self.UP)
           print('-slide DN')
           self.slide(self.DN)
-        else: 
+        else:
           print('case C')
           self.mv_blank(right_t,self.UP)
           print('-slide LF')
